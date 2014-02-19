@@ -18,7 +18,6 @@ feature 'Admin panel' do
     it "can edit a post by clicking the edit link next to a post" do
       Post.create(title:"Test Post 1", content: "content")
       visit admin_posts_url
-
       click_link "Edit"
       page.should have_content "Edit Test Post 1"
       fill_in "post[content]", :with => "edited content" # note that the name for fill in is the name attribute for the field
@@ -30,15 +29,12 @@ feature 'Admin panel' do
     it "can delete a post by clicking the delete link next to a post" do
       Post.create(title:"Test Post 1", content: "content")
       visit admin_posts_url
-
       click_link "Delete"
-
       expect(Post.first).to eq(nil)
     end
 
     it "can create a new post and view it" do
        visit new_admin_post_url
-
        expect {
          fill_in 'post_title',   with: "Hello world!"
          fill_in 'post_content', with: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
