@@ -4,6 +4,8 @@
 require 'spec_helper'
 
 feature 'Admin panel' do
+  before {page.driver.browser.authorize 'geek', 'jock'}
+
   context "on admin homepage" do
     it "can see a list of recent posts" do
       Post.create(title:"Test Post 1", content: "content")
